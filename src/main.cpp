@@ -165,7 +165,7 @@ String version = "1.3 – NL";
 #define GRAPH 1
 #define V3
 #ifndef DEBUG
-#define DEBUG 0 // 2//1//0 1 is on serial only, 2 is telnet,
+#define DEBUG 2 // 2//1//0 1 is on serial only, 2 is telnet,
 #endif
 
 #define ESMR5 1
@@ -183,7 +183,7 @@ const char *host = "P1test";
 #define BLED LED_BUILTIN
 #define PRINTER LOG_PRINTER_TELNET
 // #define PRINTER LOG_PRINTER_SERIAL
-#include "DSMR5Mock.h"
+#include "mocks/DSMR5Mock.h"
 DSMR5Mock dSMRMock(DR);
 #define DataSerial dSMRMock
 #elif DEBUG == 3
