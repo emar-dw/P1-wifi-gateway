@@ -39,7 +39,7 @@ void telnetloop() {
     // find free/disconnected spot
     for (i = 0; i < MAX_SRV_CLIENTS; i++)
       if (!telnetClients[i]) { // equivalent to !serverClients[i].connected()
-        telnetClients[i] = telnet.accept();
+        telnetClients[i] = telnet.available(); // used to be telnet.accept() which was not found
         Log.verbose("New client: index ");
         Log.verbose("%d\n", i);
         telnetConnected = true;
@@ -48,7 +48,7 @@ void telnetloop() {
         telnetConnected = false;
     // no free/disconnected spot so reject
     if (i == MAX_SRV_CLIENTS) {
-      telnet.accept().println("busy");
+      telnet.available().println("busy"); // used to be telnet.accept() which was not found
       // hints: server.accept() is a WiFiClient with short-term scope
       // when out of scope, a WiFiClient will
       // - flush() - all data will be sent
